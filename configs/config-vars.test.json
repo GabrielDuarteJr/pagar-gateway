@@ -1,0 +1,6 @@
+{
+  "node_env": "test",
+  "api": {
+    "port": 3000
+  }
+}

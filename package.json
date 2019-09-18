@@ -1,0 +1,46 @@
+{
+  "name": "pagar-gateway",
+  "version": "1.0.0",
+  "description": "Gateway for payments with card",
+  "main": "./server/index.js",
+  "scripts": {
+    "start": "nodemon ./server/index.js",
+    "dev": "yarn config:dev && yarn start",
+    "config:dev": "cp configs/config-vars.dev.json configs/config-vars.json",
+    "config:test": "cp configs/config-vars.test.json configs/config-vars.json",
+    "lint": "eslint --fix --ext .json,.js,.spec.js src test server",
+    "test": "mocha ./test/api"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "koa": "^2.8.1",
+    "koa-body": "^4.1.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-convert": "^1.2.0",
+    "koa-cors": "^0.0.16",
+    "koa-router": "^7.4.0",
+    "moment": "^2.24.0",
+    "pg": "^7.12.1",
+    "require-all": "^3.0.0",
+    "uuid": "^3.3.2",
+    "validator": "^11.1.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.15.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-json": "^1.4.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "mocha": "^6.2.0",
+    "nock": "^11.3.4",
+    "nodemon": "^1.18.10",
+    "sinon": "^7.4.2",
+    "sinon-chai": "^3.3.0"
+  },
+  "author": "Gabriel Duarte Junior",
+  "license": "ISC"
+}
