@@ -1,0 +1,26 @@
+[
+  {
+    "payable": "33.51",
+    "paymentdate": "09/18/2019",
+    "status": "paid",
+    "created_at": "2019-09-18T17:34:18.598Z"
+  },
+  {
+    "payable": "33.51",
+    "paymentdate": "09/18/2019",
+    "status": "paid",
+    "created_at": "2019-09-18T21:08:52.506Z"
+  },
+  {
+    "payable": "0.95",
+    "paymentdate": "10/19/2019",
+    "status": "waiting_funds",
+    "created_at": "2019-09-19T03:45:15.143Z"
+},
+{
+    "payable": "0.95",
+    "paymentdate": "10/19/2019",
+    "status": "waiting_funds",
+    "created_at": "2019-09-19T03:45:18.152Z"
+}
+]

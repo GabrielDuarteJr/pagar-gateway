@@ -8,7 +8,7 @@ const save = async (newTransaction) => {
   const value = String((newTransaction.value / 100).toFixed(2))
   const currentTransaction = await transaction.create({ ...newTransaction, cardNumber, value })
   if (!currentTransaction) {
-    throw new Error('ERRO_TRANSACTION_NOT_FOUND')
+    throw new Error('ERROR_TRANSACTION_NOT_FOUND')
   }
   delete currentTransaction.userid
   delete currentTransaction.cvv
@@ -19,7 +19,7 @@ const getAll = async (userId) => {
   const filtredTransactions = []
   const allTransactions = await transaction.getByClientId(userId)
   if (!allTransactions) {
-    throw new Error('ERRO_TRANSACTION_NOT_FOUND')
+    throw new Error('ERROR_TRANSACTION_NOT_FOUND')
   }
   allTransactions.map(transaction => {
     delete transaction.id

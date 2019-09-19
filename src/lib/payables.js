@@ -15,7 +15,7 @@ const save = async ({ userId, value, paymentMethod, transactionId }) => {
     : 'paid'
   const currentPayable = await payables.create(userId, transactionId, payable, paymentDate, status)
   if (!currentPayable) {
-    throw new Error('ERRO_PLAYABLE_NOT_FOUND')
+    throw new Error('ERROR_PLAYABLE_NOT_FOUND')
   }
 }
 
@@ -23,7 +23,7 @@ const getAll = async (userId) => {
   const filtredPayables = []
   const allPayables = await payables.getByClientId(userId)
   if (!allPayables) {
-    throw new Error('ERRO_PLAYABLE_NOT_FOUND')
+    throw new Error('ERROR_PLAYABLE_NOT_FOUND')
   }
   allPayables.map(payable => {
     delete payable.id
@@ -38,7 +38,7 @@ const getBalance = async (userId, typeBalance) => {
   let balance = 0
   const allPayables = await payables.getByClientId(userId)
   if (!allPayables) {
-    throw new Error('ERRO_PLAYABLE_NOT_FOUND')
+    throw new Error('ERROR_PLAYABLE_NOT_FOUND')
   }
   allPayables.map(({ status, payable }) => {
     if (status === typeBalance) {

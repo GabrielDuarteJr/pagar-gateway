@@ -1,60 +1,64 @@
 const logger = require('./logger')
 
-const log = logger('error')
+const log = logger('Error')
 
-const errortypes = {
-  ERRO_NOT_AUTHORIZED: {
+const errorTypes = {
+  ERROR_REQUEST_CREDENTIALS: {
     status: 401,
-    message: 'Unauthorized'
+    message: 'Unauthorized request credentials'
   },
-  ERRO_REQUEST_CREDENTIALS: {
-    status: 511,
-    message: 'Request credentials'
-  },
-  ERRO_CREATE_NEW_USER: {
+  ERROR_CREATE_NEW_USER: {
     status: 500,
     message: 'There was a problem saving user'
   },
-  ERRO_GET_USER: {
+  ERROR_GET_USER: {
     status: 500,
     message: 'There was a problem get user'
   },
-  ERRO_CREDENTIALS: {
+  ERROR_CREDENTIALS: {
     status: 400,
     message: 'Invalid credentials'
   },
-  ERRO_USER_NOT_FOUND: {
+  ERROR_USER_NOT_FOUND: {
     status: 404,
     message: 'User not found'
   },
-  ERRO_TRANSACTION_NOT_FOUND: {
+  ERROR_TRANSACTION_NOT_FOUND: {
     status: 404,
     message: 'Transaction not found'
   },
-  ERRO_CREATE_NEW_TRANSACTION: {
+  ERROR_CREATE_NEW_TRANSACTION: {
     status: 500,
     message: 'There was a problem saving transaction'
   },
-  ERRO_GET_TRANSACTIONS: {
+  ERROR_GET_TRANSACTIONS: {
     status: 500,
     message: 'There was a problem get transaction'
   },
-  ERRO_CREATE_NEW_PAYABLE: {
+  ERROR_CREATE_NEW_PAYABLE: {
     status: 500,
     message: 'There was a problem saving payable'
   },
-  ERRO_GET_PLAYABLES: {
+  ERROR_GET_PLAYABLES: {
     status: 500,
     message: 'There was a problem get payable'
   },
-  ERRO_PLAYABLE_NOT_FOUND: {
+  ERROR_PLAYABLE_NOT_FOUND: {
     status: 404,
     message: 'Payable not found'
+  },
+  ERROR_VALIDATION: {
+    status: 400,
+    message: 'Check body request'
   }
 }
 
 module.exports = error => {
-  const { message, status } = errortypes[error]
-  log(message)
-  return [message, status]
+  log.error(error)
+  try {
+    const { message, status } = errorTypes[error]
+    return [message, status]
+  } catch (e) {
+    return ['Internal Server Error', 500]
+  }
 }

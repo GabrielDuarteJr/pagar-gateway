@@ -13,7 +13,7 @@ const create = async ({ userId, value, description, paymentMethod, cardNumber, b
     const { rows } = await Client.query(createTransactionScript, [ value, description, paymentMethod, cardNumber, bearerName, cardExpiration, cvv, userId ])
     return rows[0]
   } catch (err) {
-    throw new Error('ERRO_CREATE_NEW_TRANSACTION')
+    throw new Error('ERROR_CREATE_NEW_TRANSACTION')
   }
 }
 
@@ -22,7 +22,7 @@ const getByClientId = async userId => {
     const { rows } = await Client.query(getTransactionScript, [ userId ])
     return rows
   } catch (err) {
-    throw new Error('ERRO_GET_TRANSACTIONS')
+    throw new Error('ERROR_GET_TRANSACTIONS')
   }
 }
 

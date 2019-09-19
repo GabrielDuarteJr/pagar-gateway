@@ -12,7 +12,7 @@ const create = async ({ name, email, clientId, clientKey }) => {
     const { rows } = await Client.query(createUserScript, [ name, email, clientId, clientKey ])
     return rows[0]
   } catch (err) {
-    throw new Error('ERRO_CREATE_NEW_USER')
+    throw new Error('ERROR_CREATE_NEW_USER')
   }
 }
 
@@ -21,7 +21,7 @@ const getByClientId = async clientId => {
     const { rows } = await Client.query(getUserScript, [ clientId ])
     return rows[0]
   } catch (err) {
-    throw new Error('ERRO_GET_USER')
+    throw new Error('ERROR_GET_USER')
   }
 }
 

@@ -12,24 +12,25 @@ const save = async (name, email) => {
   try {
     return await user.create({ name, email, ...credentials })
   } catch (err) {
-    throw new Error('ERRO_CREATE_NEW_USER')
+    throw new Error('ERROR_CREATE_NEW_USER')
   }
 }
 
 const confirmUser = async (clientId, clientKey) => {
   const currentUser = await user.getByClientId(clientId)
   if (!currentUser) {
-    throw new Error('ERRO_USER_NOT_FOUND')
+    throw new Error('ERROR_USER_NOT_FOUND')
   }
   const { id, name, email } = currentUser
   if (encryption.compare(email + name, clientKey)) {
     return id
   } else {
-    throw new Error('ERRO_CREDENTIALS')
+    throw new Error('ERROR_CREDENTIALS')
   }
 }
 
 module.exports = {
   save,
-  confirmUser
+  confirmUser,
+  createCredentials
 }

@@ -10,7 +10,7 @@ const createRouter = () => {
 
 const setRoutes = (router, { validateUser, validateTransaction }) => {
   router.post('/user', validateUser, user.set)
-  router.post('/transaction', validateTransaction, transactions.set)
+  router.post('/transactions', validateTransaction, transactions.set)
   router.get('/transactions', transactions.get)
   router.get('/payables', payables.get)
 }

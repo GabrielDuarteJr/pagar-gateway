@@ -10,7 +10,7 @@ const getIgnoredAuth = (route) => ignoredRoutes.indexOf(route) >= 0
 
 const getClient = async (clientid, clientkey) => {
   if (!clientid || !clientkey || !validator.isUUID(clientid)) {
-    throw new Error('ERRO_REQUEST_CREDENTIALS')
+    throw new Error('ERROR_REQUEST_CREDENTIALS')
   }
   return user.confirmUser(clientid, clientkey)
 }

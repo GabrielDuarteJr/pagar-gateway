@@ -1,0 +1,29 @@
+[
+  {
+      "value": "34.55",
+      "description": "Casinha de cachorro",
+      "paymentmethod": "debit_card",
+      "cardnumber": "************8885",
+      "bearername": "gabriel junior",
+      "cardexpiration": "09/2021",
+      "created_at": "2019-09-18T17:34:18.535Z"
+  },
+  {
+      "value": "34.55",
+      "description": "Casinha de cachorro",
+      "paymentmethod": "debit_card",
+      "cardnumber": "************8885",
+      "bearername": "gabriel junior",
+      "cardexpiration": "09/2021",
+      "created_at": "2019-09-18T21:08:52.467Z"
+  },
+  {
+      "value": "34.55",
+      "description": "Casinha de cachorro",
+      "paymentmethod": "debit_card",
+      "cardnumber": "************8885",
+      "bearername": "gabriel junior",
+      "cardexpiration": "09/2021",
+      "created_at": "2019-09-19T02:10:40.479Z"
+  }
+]

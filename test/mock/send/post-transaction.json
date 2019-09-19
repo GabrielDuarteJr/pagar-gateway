@@ -1,0 +1,9 @@
+{
+	"value": 3455,
+	"description": "Casinha de cachorro",
+	"paymentMethod": "debit_card",
+	"cardNumber": "5353323183678885",
+	"bearerName": "gabriel junior",
+	"cardExpiration": "09/2021",
+	"cvv": "362"
+}

@@ -1,58 +1,66 @@
 const validator = require('validator')
 const logger = require('./logger')
+const errorHandling = require('./errors')
 
 const log = logger('User')
 
-const rulleName = (name) => !name && validator.isEmpty(name)
+const rulleName = name => !name && validator.isEmpty(name)
   ? 'Required a username'
   : null
 
-const rulleEmail = (email) => !email && !validator.isEmail(email)
+const rulleEmail = email => !email && !validator.isEmail(email)
   ? 'Invalid email'
   : null
 
-const rulleValue = (value) => !value && !validator.isInt(value)
+const rulleValue = value => !value && value === 0
   ? 'Required value'
   : null
 
-const rulleDescription = (description) => !description && !validator.isEmpty(description)
+const rulleDescription = description => !description && validator.isEmpty(description)
   ? 'Required a description'
   : null
 
-const rullePaymentMethod = (paymentMethod) => !paymentMethod && !(validator.equals(paymentMethod, 'debit_card') || validator.equals(paymentMethod, 'credit_card'))
+const rullePaymentMethod = paymentMethod => !paymentMethod && !(validator.equals(paymentMethod, 'debit_card') || validator.equals(paymentMethod, 'credit_card'))
   ? 'Required payment method'
   : null
 
-const rulleCardNumber = (cardNumber) => !cardNumber && !validator.isCreditCard(cardNumber)
+const rulleCardNumber = cardNumber => !cardNumber && !validator.isCreditCard(cardNumber)
   ? 'Required a card number valid'
   : null
 
-const rulleBearerName = (bearerName) => !bearerName && !validator.isEmpty(bearerName)
+const rulleBearerName = bearerName => !bearerName && validator.isEmpty(bearerName)
   ? 'Required bearer Name'
   : null
 
-const rulleCardExpiration = (cardExpiration) => !cardExpiration && !validator.isEmpty(cardExpiration)
+const rulleCardExpiration = cardExpiration => !cardExpiration && validator.isEmpty(cardExpiration)
   ? 'Required card expiration'
   : null
 
-const rulleCvv = (cvv) => !cvv || cvv.length > 4
+const rulleCvv = cvv => !cvv || cvv.length > 4
   ? 'Required cvv'
   : null
 
-const validateUser = async (ctx, next) => {
-  const { name, email } = ctx.request.body
-  let errors = []
+const checkValuesUser = ({ name, email }) => {
+  const errors = []
   errors.push(rulleName(name))
   errors.push(rulleEmail(email))
-  errors = errors.filter(Boolean)
-  if (errors.length) {
-    log.error(`Error validade user = ${errors}`)
-    ctx.status = 400
-    ctx.body = {
-      message: errors
+  return errors.filter(Boolean)
+}
+
+const validateUser = async (ctx, next) => {
+  try {
+    const errors = checkValuesUser(ctx.request.body)
+    if (errors.length) {
+      log.error(`Error validade user = ${errors}`)
+      ctx.status = 400
+      ctx.body = {
+        message: errors
+      }
+    } else {
+      await next()
     }
-  } else {
-    await next()
+  } catch (e) {
+    [ctx.body, ctx.status] = errorHandling('ERROR_VALIDATION')
   }
 }
 
@@ -69,15 +77,19 @@ const checkValuesTransaction = ({ value, description, paymentMethod, cardNumber,
 }
 
 const validateTransaction = async (ctx, next) => {
-  const errors = checkValuesTransaction(ctx.request.body)
-  if (errors.length) {
-    log.error(`Error validade user = ${errors}`)
-    ctx.status = 400
-    ctx.body = {
-      message: errors
+  try {
+    const errors = checkValuesTransaction(ctx.request.body)
+    if (errors.length) {
+      log.error(`Error validade user = ${errors}`)
+      ctx.status = 400
+      ctx.body = {
+        message: errors
+      }
+    } else {
+      await next()
     }
-  } else {
-    await next()
+  } catch (e) {
+    [ctx.body, ctx.status] = errorHandling('ERROR_VALIDATION')
   }
 }
 

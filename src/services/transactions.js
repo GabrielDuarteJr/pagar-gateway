@@ -6,7 +6,7 @@ const set = async (ctx) => {
   const { value, paymentMethod } = ctx.request.body
   try {
     const currentTransaction = await transactions.save({ userId, ...ctx.request.body })
-    await payables.save({ userId, value, paymentMethod, transactionId: currentTransaction.id }) 
+    await payables.save({ userId, value, paymentMethod, transactionId: currentTransaction.id })
     delete currentTransaction.id
     ctx.body = currentTransaction
   } catch (e) {

@@ -13,7 +13,7 @@ const create = async (userId, transactionId, payable, paymentDate, status) => {
     const { rows } = await Client.query(createPayableScript, [ payable, paymentDate, status, userId, transactionId ])
     return rows[0]
   } catch (err) {
-    throw new Error('ERRO_CREATE_NEW_PAYABLE')
+    throw new Error('ERROR_CREATE_NEW_PAYABLE')
   }
 }
 
@@ -22,7 +22,7 @@ const getByClientId = async userId => {
     const { rows } = await Client.query(getPayableScript, [ userId ])
     return rows
   } catch (err) {
-    throw new Error('ERRO_GET_PLAYABLES')
+    throw new Error('ERROR_GET_PLAYABLES')
   }
 }
 

@@ -1,0 +1,11 @@
+{
+  "message": [
+      "Required value",
+      "Required a description",
+      "Required payment method",
+      "Required a card number valid",
+      "Required bearer Name",
+      "Required card expiration",
+      "Required cvv"
+  ]
+}
